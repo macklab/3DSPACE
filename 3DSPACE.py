@@ -26,15 +26,20 @@ args = sys.argv[sys.argv.index('--'):]
 back_step = float(args[1])
 nose_step = float(args[2])
 wings_step = float(args[3])
-angled = bool(int(args[4]))
-back = bool(int(args[5]))
-side = bool(int(args[6]))
-no_background = bool(int(args[7]))
-resolution_x = int(args[8])
-resolution_y = int(args[9])
+generate_models = bool(int(args[4]))
+angled = bool(int(args[5]))
+back = bool(int(args[6]))
+side = bool(int(args[7]))
+no_background = bool(int(args[8]))
+resolution_x = int(args[9])
+resolution_y = int(args[10])
 
 # Maybe hide environment box for backgrounds
 bpy.data.objects['Environment Box'].hide_render = no_background
+
+# Select only spaceship
+bpy.ops.object.select_all(action='DESELECT')
+bpy.data.objects['Rocket'].select = True
 
 # Calculate lists to loop over
 backPrecision = len(str(back_step).split('.')[1])
@@ -66,6 +71,11 @@ for backValue in backList:
             bpy.data.shape_keys["Key"].key_blocks["Back - X"].value = backValue
             bpy.data.shape_keys["Key"].key_blocks["Tip - Y"].value = noseValue
             bpy.data.shape_keys["Key"].key_blocks["Fins - Z"].value = wingsValue
+
+            # Generate models as needed
+            if generate_models:
+                bpy.ops.export_mesh.stl(filepath = '/output/' + name + '.stl',
+                    use_selection = True)
 
             # Render angled if needed
             if angled:

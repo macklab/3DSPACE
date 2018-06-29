@@ -6,6 +6,7 @@ step=
 back_step=
 nose_step=
 wings_step=
+generate_models=0
 
 # Rendering parameters
 threads=0
@@ -70,29 +71,58 @@ while [ "$1" != "" ]; do
       shift
       custom_python=$1
       ;;
+    --generate_models )
+      generate_models=1
+      ;;
     -h|--help )
       echo "This is help"
       exit
       ;;
     * )
-      # Positional arguments
-      echo "Positional parameters?"
-      # exit 1
+      # Incorrect parameters
+      echo "Error: Incorrect parameter - $1"
+      exit 1
   esac
   shift
 done
 
-echo $custom_python
-ls /output/
-if [ ! -z $custom_python ]; then
-  if [ -f /output/$custom_python ]; then
+if [ ! -z $custom_python ]; then # Use custom rendering script flag
+  if [ -f /output/$custom_python ]; then # Check if the rendering script exists
+    # Run blender using custom rendering script
     $local/blender/blender $local/3DSPACE.blend --background -noaudio -Y \
       -t $threads -P /output/$custom_python
-  else
+  else # Rendering script doesn't exist
       echo "Error: Missing custom python script for rendering!"
       echo "Check git respository for more information."
       exit 1
   fi
+elif [ $generate_models = 1 ]; then # Only generate models
+  # Override unnecessary parameters
+  angled=0
+  back=0
+  side=0
+  no_background=0
+  width=1
+  height=1
+
+  # Check if there are any specific dimension step overrides
+  if [ -z $back_step ]; then
+    back_step=$step
+  fi
+  if [ -z $nose_step ]; then
+    nose_step=$step
+  fi
+  if [ -z $wings_step ]; then
+    wings_step=$step
+  fi
+
+  echo "Generate models only!"
+
+  # Generate models
+  $local/blender/blender $local/3DSPACE.blend --background -noaudio -Y \
+    -t $threads -P $local/3DSPACE.py -- \
+    $back_step $nose_step $wings_step $generate_models $angled $back $side \
+    $no_background $width $height
 else
   # Check if there are any specific dimension step overrides
   if [ -z $back_step ]; then
@@ -127,6 +157,6 @@ else
   # Render!
   $local/blender/blender $local/3DSPACE.blend --background -noaudio -Y \
     -t $threads -P $local/3DSPACE.py -- \
-    $back_step $nose_step $wings_step $angled $back $side $no_background \
-    $width $height
+    $back_step $nose_step $wings_step $generate_models $angled $back $side \
+    $no_background $width $height
 fi
