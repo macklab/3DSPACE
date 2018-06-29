@@ -1,5 +1,13 @@
 # 3DSPACE
-Docker for generation of 3DSPACE Stimulus.
+Docker for generation of 3DSPACE Stimulus. This container allows custom
+generation of 3DSPACE stimulus. By using Docker, users can generate images
+easily without needing to download many prerequisites. The 3DSPACE set can
+generate images from three different perspectives with three different
+dimensions varying from 0-1. It is possible to only generate 3D models using
+the --generate_models argument. As the 3DSPACE set was created using Blender,
+the generation of images is controlled by a Python script. Advanced users can
+define a custom Python script for the generation of images, see
+example_script.py for the essential methods.
 
 3DSPACE generator has the following command line arguments:
 ```
@@ -40,7 +48,8 @@ arguments:
 ```
 
 Simplest generation command. Generates 400x300 images from all three perspective
-stepping through the dimensions in 0.2 units.
+stepping through the dimensions in 0.2 units. Note the -v docker parameter to
+mount a directory to output images.
 ```shell
 docker run -rm -it -v /data/output:/output \
   macklabuoft/3dspace:latest --step 0.2 --width 400 --height 300
@@ -55,9 +64,9 @@ docker run --rm -it -v /data/output:/output \
   --side --thread 4 --no_background --width 100 --height 100
 ```
 
-Self-test
-```Shell
-docker run --rm -it -v /Users/macklabadmin/Desktop/render_test:/output \
-  macklabuoft/3dspace:latest --wings_step 0.5 --back_step 0.2 --nose_step 1.0 \
-  --side --back --height 100 --width 100 --no_background
+To use a custom rendering script, place a python script in the output folder.
+Use a command similar to the following:
+```shell
+docker run --rm -it -v /data/output:/output \
+  macklabuoft/3dspace:latest --thread 4 --custom_python example_script.py
 ```

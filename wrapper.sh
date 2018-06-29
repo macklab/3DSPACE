@@ -75,7 +75,39 @@ while [ "$1" != "" ]; do
       generate_models=1
       ;;
     -h|--help )
-      echo "This is help"
+      echo "usage: wrapper.sh [-h] [--width WIDTH] [--height HEIGHT]
+                              [--step STEP] [--back_step STEP] [--nose_step STEP]
+                              [--wings_step STEP] [--angled] [--back] [--side]
+                              [--no_background] [--threads THREADS] [--generate_models]
+                              [--custom_python SCRIPT]
+Wrapper for 3DSPACE stimulus generation using a Docker container.
+
+name-value arguments:
+  --width WIDTH             Width in pixels for the generated images.
+  --height HEIGHT           Height in pixels for generated images.
+  --step STEP               Units to step by from 0 in generating models/images.
+  --back_step STEP          Units to step by from 0 for the back dimension,
+                            overrides --step parameter.
+  --nose_step STEP          Units to step by from 0 for the nose dimension,
+                            overrides --step parameter.
+  --wings_step STEP         Units to step by from 0 for the wings dimension,
+                            overrides --step parameter.
+  --threads THREADS         Number of threads to render images with, 0 will use
+                            system configuration.
+  --custom_python SCRIPT    Name of custom rendering python script, will
+                            override all other parameters except --threads
+
+arguments:
+  -h, --help                Show this help message and exit.
+  --angled                  Render images from the angled camera. If no camera
+                            parameter is set, all cameras are used.
+  --back                    Render images from the back camera. If no camera
+                            parameter is set, all cameras are used.
+  --side                    Render images from the side camera. If no camera
+                            parameter is set, all cameras are used.
+  --no_background           Render images with transparent background.
+  --generate_models         Generate 3D models only, overrides all render
+                            arguments."
       exit
       ;;
     * )
