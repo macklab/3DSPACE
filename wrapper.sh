@@ -140,10 +140,10 @@ else
     echo "Error: Missing step argument for rendering!"
     exit 1
   elif [ -z $height ]; then
-    echo "Error: Missing height argument!"
+    echo "Error: Missing height argument for rendering!"
     exit 1
   elif [ -z $width ]; then
-    echo "Error: Missing width argument!"
+    echo "Error: Missing width argument for rendering!"
     exit 1
   fi
 
