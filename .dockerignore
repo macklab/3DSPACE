@@ -1,1 +1,4 @@
 example_script.py
+.gitignore
+Dockerfile
+README.md
