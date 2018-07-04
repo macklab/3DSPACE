@@ -23,3 +23,8 @@ bpy.context.scene.render.filepath = '/output/spaceship'
 
 # Render the image
 bpy.ops.render.render(write_still = True)
+"""
+This will render a single 400x300px image "spaceship.png" with a background from
+the angled camera. The spaceship will have a value of 0.5 for the back, 1.0 for
+the nose cone, 0.0 for the wings. 
+"""
