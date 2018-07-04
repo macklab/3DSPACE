@@ -9,7 +9,7 @@ the generation of images is controlled by a Python script. Advanced users can
 define a custom Python script for the generation of images, see
 example_script.py for the essential methods. In order to use the 3DSPACE
 stimulus generator, you must have
-[Docker](https://www.docker.com/community-edition) installed and running. 
+[Docker](https://www.docker.com/community-edition) installed and running.
 
 3DSPACE generator has the following command line arguments:
 ```
@@ -72,7 +72,7 @@ with each dimension stepping differently, using only four cores, with no
 background. It will specifically use the container tagged `v1.0`.
 ```shell
 docker run --rm -it -v /data/output:/output \
-  macklabuoft/3dspace:v1.0 --back_step 0.5 --nose_step 0.20 --back_step 1.0 \
+  macklabuoft/3dspace:v1.0 --back_step 0.5 --nose_step 0.20 --wings_step 1.0 \
   --side --thread 4 --no_background --width 100 --height 100
 ```
 
