@@ -24,6 +24,7 @@ docker run --rm -it -v [REPLACE ME!]:/output \
 ```
 5. Let it run for your spaceships!
 
+## Documentation
 3DSPACE generator has the following command line arguments:
 ```
 usage: wrapper.sh [-h] [--width WIDTH] [--height HEIGHT]
