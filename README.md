@@ -66,7 +66,7 @@ Simplest generation command. Generates 400x300 images from all three perspective
 stepping through the dimensions in 0.2 units. Here is a breakdown of each part:
 - `docker run` will use Docker to run a container, if it is your first time
 running the 3DSPACE container, it will auto-build it from the online repository.
-- `-rm` will clean up the contents of the container after it is run (so there
+- `--rm` will clean up the contents of the container after it is run (so there
 won't be a build up of rendered images inside the container).
 - `-it` are two parameters that will allow you to interact with the container
 when it is running in the foreground.
@@ -78,7 +78,7 @@ machine while the right side of the colon should always be `/output`.
 stimuli.
 - `--width 400--height 300` will render images at 400x300px.
 ```shell
-docker run -rm -it -v /data/output:/output \
+docker run --rm -it -v /data/output:/output \
   macklabuoft/3dspace:latest --step 0.2 --width 400 --height 300
 ```
 
