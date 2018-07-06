@@ -77,7 +77,7 @@ machine while the right side of the colon should always be `/output`.
 - `macklabuoft/3dspace:latest` will use the latest version of the container from Dockerhub.
 - `--step 0.2` will step through each dimension at steps of 0.2 units to render
 stimuli.
-- `--width 400--height 300` will render images at 400x300px.
+- `--width 400 --height 300` will render images at 400x300px.
 ```shell
 docker run --rm -it -v /data/output:/output \
   macklabuoft/3dspace:latest --step 0.2 --width 400 --height 300
