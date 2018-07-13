@@ -12,6 +12,7 @@ stimulus generator, you must have
 [Docker](https://www.docker.com/community-edition) installed and running.
 
 ## Getting Started
+0. You don't need this repository downloaded! Just start from step 1.
 1. Install [Docker](https://www.docker.com/community-edition) and ensure it is
 running.
 2. Create a folder where the images will be placed after being generated
