@@ -12,11 +12,12 @@ stimulus generator, you must have
 [Docker](https://www.docker.com/community-edition) installed and running.
 
 ## Getting Started
-0. You don't need this repository downloaded! Just start from step 1.
+0. You don't need this repository downloaded! Just start from step 1 and Docker 
+will download necessary files.
 1. Install [Docker](https://www.docker.com/community-edition) and ensure it is
 running.
-2. Create a folder where the images will be placed after being generated
-3. Open a terminal window (Windows: Command Prompt, Mac: Terminal)
+2. Create a folder where the images will be placed after being generated.
+3. Open a terminal window (Windows: Command Prompt, Mac: Terminal).
 4. To generate your first set of images run this command. Replace the the entire
 [REPLACE ME!] section with the path to the folder you made for the images.
 ```
